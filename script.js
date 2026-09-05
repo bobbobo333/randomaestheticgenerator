@@ -1,5 +1,7 @@
+```javascript
 // ==========================================
 // BL3CKPURPLE RANDOM AESTHETIC GENERATOR
+// ONE-BY-ONE GENERATOR
 // ==========================================
 
 
@@ -11,7 +13,6 @@ const hats = {
         "Embroidered hat",
         "Wide-brim felt hat"
     ],
-
     "Streetwear": [
         "Bucket hat",
         "Baseball cap",
@@ -478,16 +479,14 @@ const accessories = {
 
 
 // ==========================================
-// RANDOMIZER FUNCTIONS
+// RANDOMIZER
 // ==========================================
 
-// Pick a random key/aesthetic
 function randomAesthetic(category) {
     const aesthetics = Object.keys(category);
     return aesthetics[Math.floor(Math.random() * aesthetics.length)];
 }
 
-// Pick a random item from an aesthetic
 function randomItem(category, aesthetic) {
     const items = category[aesthetic];
     return items[Math.floor(Math.random() * items.length)];
@@ -495,45 +494,126 @@ function randomItem(category, aesthetic) {
 
 
 // ==========================================
-// GENERATOR
+// GENERATOR ORDER
 // ==========================================
 
-document.getElementById("generateButton").addEventListener("click", function() {
+const categories = [
+    {
+        name: "Hat",
+        emoji: "🧢",
+        database: hats,
+        element: "hat"
+    },
+    {
+        name: "Top",
+        emoji: "👕",
+        database: tops,
+        element: "top"
+    },
+    {
+        name: "Bottom",
+        emoji: "👖",
+        database: bottoms,
+        element: "bottom"
+    },
+    {
+        name: "Shoes",
+        emoji: "👟",
+        database: shoes,
+        element: "shoes"
+    },
+    {
+        name: "Accessories",
+        emoji: "💍",
+        database: accessories,
+        element: "accessories"
+    }
+];
 
-    // HAT
-    const hatAesthetic = randomAesthetic(hats);
-    const hatItem = randomItem(hats, hatAesthetic);
 
-    // TOP
-    const topAesthetic = randomAesthetic(tops);
-    const topItem = randomItem(tops, topAesthetic);
+// ==========================================
+// GENERATOR STATE
+// ==========================================
 
-    // BOTTOM
-    const bottomAesthetic = randomAesthetic(bottoms);
-    const bottomItem = randomItem(bottoms, bottomAesthetic);
+let currentCategory = 0;
+let generating = false;
 
-    // SHOES
-    const shoeAesthetic = randomAesthetic(shoes);
-    const shoeItem = randomItem(shoes, shoeAesthetic);
-
-    // ACCESSORIES
-    const accessoryAesthetic = randomAesthetic(accessories);
-    const accessoryItem = randomItem(accessories, accessoryAesthetic);
+const button = document.getElementById("generateButton");
 
 
-    // Display results
-    document.getElementById("hat").textContent =
-        `${hatAesthetic} → ${hatItem}`;
+// ==========================================
+// GENERATE ONE CATEGORY
+// ==========================================
 
-    document.getElementById("top").textContent =
-        `${topAesthetic} → ${topItem}`;
+function generateNext() {
 
-    document.getElementById("bottom").textContent =
-        `${bottomAesthetic} → ${bottomItem}`;
+    if (generating) return;
 
-    document.getElementById("shoes").textContent =
-        `${shoeAesthetic} → ${shoeItem}`;
+    generating = true;
 
-    document.getElementById("accessories").textContent =
-        `${accessoryAesthetic} → ${accessoryItem}`;
+    const category = categories[currentCategory];
+
+    const aesthetic = randomAesthetic(category.database);
+    const item = randomItem(category.database, aesthetic);
+
+    const resultElement = document.getElementById(category.element);
+
+    // Show that the generator is thinking
+    resultElement.textContent = "🎲 Rolling...";
+
+    setTimeout(() => {
+
+        resultElement.textContent =
+            `${aesthetic} → ${item}`;
+
+        currentCategory++;
+
+        generating = false;
+
+        // Change button depending on progress
+        if (currentCategory < categories.length) {
+            button.textContent =
+                `NEXT ${categories[currentCategory].emoji} ${categories[currentCategory].name}`;
+        } else {
+            button.textContent = "🔄 NEW OUTFIT";
+        }
+
+    }, 700);
+}
+
+
+// ==========================================
+// START NEW OUTFIT
+// ==========================================
+
+function startNewOutfit() {
+
+    currentCategory = 0;
+
+    // Clear previous results
+    document.getElementById("hat").textContent = "---";
+    document.getElementById("top").textContent = "---";
+    document.getElementById("bottom").textContent = "---";
+    document.getElementById("shoes").textContent = "---";
+    document.getElementById("accessories").textContent = "---";
+
+    button.textContent = "🎲 GENERATE HAT";
+}
+
+
+// ==========================================
+// BUTTON
+// ==========================================
+
+button.addEventListener("click", function() {
+
+    // If the outfit is finished, start a new one
+    if (currentCategory >= categories.length) {
+        startNewOutfit();
+        return;
+    }
+
+    generateNext();
+
 });
+```
