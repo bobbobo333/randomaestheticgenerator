@@ -1,6 +1,6 @@
 ```javascript
 // ==========================================
-// BL3CKPURPLE RANDOM AESTHETIC GENERATOR
+// BL3CKPURPLE RANDOM FASHION GENERATOR
 // ONE-BY-ONE GENERATOR
 // ==========================================
 
