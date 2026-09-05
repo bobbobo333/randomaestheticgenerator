@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 40px;
+    background: #f3f3f3;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+button {
+    font-size: 20px;
+    padding: 15px 25px;
+    cursor: pointer;
+}
+
+#results {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+#results p {
+    margin: 15px;
+}
