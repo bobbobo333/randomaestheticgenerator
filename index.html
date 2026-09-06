@@ -3,25 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Aesthetic Generator</title>
+
+    <title>BL3CKPURPLE Random Aesthetic Generator</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>BL3CKPURPLE</h1>
-    <h2>Random Aesthetic Generator</h2>
+    <main class="container">
 
-    <button id="generateButton">🎲 GENERATE</button>
+        <h1>BL3CKPURPLE</h1>
 
-    <div id="results">
-        <p>🧢 Hat: <span id="hat">---</span></p>
-        <p>👕 Top: <span id="top">---</span></p>
-        <p>👖 Bottom: <span id="bottom">---</span></p>
-        <p>👟 Shoes: <span id="shoes">---</span></p>
-        <p>💍 Accessories: <span id="accessories">---</span></p>
-    </div>
+        <p class="subtitle">RANDOM FASHION GENERATOR</p>
+
+        <div class="generator">
+
+            <div class="result-row">
+                <div class="result-text">
+                    <span class="emoji">🧢</span>
+                    <strong>Hat</strong>
+                    <span id="hat">---</span>
+                </div>
+
+                <button class="generate-button" onclick="generateCategory('hat')">
+                    GENERATE HAT
+                </button>
+            </div>
+
+
+            <div class="result-row">
+                <div class="result-text">
+                    <span class="emoji">👕</span>
+                    <strong>Top</strong>
+                    <span id="top">---</span>
+                </div>
+
+                <button class="generate-button" onclick="generateCategory('top')">
+                    GENERATE TOP
+                </button>
+            </div>
+
+
+            <div class="result-row">
+                <div class="result-text">
+                    <span class="emoji">👖</span>
+                    <strong>Bottom</strong>
+                    <span id="bottom">---</span>
+                </div>
+
+                <button class="generate-button" onclick="generateCategory('bottom')">
+                    GENERATE BOTTOM
+                </button>
+            </div>
+
+
+            <div class="result-row">
+                <div class="result-text">
+                    <span class="emoji">👟</span>
+                    <strong>Shoes</strong>
+                    <span id="shoes">---</span>
+                </div>
+
+                <button class="generate-button" onclick="generateCategory('shoes')">
+                    GENERATE SHOES
+                </button>
+            </div>
+
+
+            <div class="result-row">
+                <div class="result-text">
+                    <span class="emoji">💍</span>
+                    <strong>Accessories</strong>
+                    <span id="accessories">---</span>
+                </div>
+
+                <button class="generate-button" onclick="generateCategory('accessories')">
+                    GENERATE ACCESSORIES
+                </button>
+            </div>
+
+        </div>
+
+        <p class="footer">Create something weird.</p>
+
+    </main>
 
     <script src="script.js"></script>
 
