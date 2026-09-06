@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL3CKPURPLE — Random Fashion Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <header>
+            <h1>BL3CKPURPLE</h1>
+            <p>RANDOM FASHION GENERATOR</p>
+        </header>
+
+
+        <section class="generator">
+
+            <!-- HAT -->
+            <div class="section">
+                <div class="section-heading">
+                    <span>🧢</span>
+                    <h2>Hat</h2>
+                </div>
+
+                <div id="hat" class="result">---</div>
+
+                <button class="generate-button"
+                        id="hatButton"
+                        onclick="generateHat()">
+                    GENERATE HAT
+                </button>
+            </div>
+
+
+            <!-- UPPER BODY -->
+            <div class="section">
+                <div class="section-heading">
+                    <span>👕</span>
+                    <h2>Upper Body</h2>
+                </div>
+
+                <div id="layerCount" class="result">---</div>
+
+                <button class="generate-button"
+                        id="layerButton"
+                        onclick="generateLayers()">
+                    GENERATE LAYERS
+                </button>
+
+                <div id="layers" class="sub-results"></div>
+            </div>
+
+
+            <!-- LOWER BODY -->
+            <div class="section">
+                <div class="section-heading">
+                    <span>👖</span>
+                    <h2>Lower Body</h2>
+                </div>
+
+                <div id="bottomLayerCount" class="result">---</div>
+
+                <button class="generate-button"
+                        id="bottomLayerButton"
+                        onclick="generateBottomLayers()">
+                    GENERATE LAYERS
+                </button>
+
+                <div id="bottomLayers" class="sub-results"></div>
+            </div>
+
+
+            <!-- LEGWEAR -->
+            <div class="section">
+                <div class="section-heading">
+                    <span>🧦</span>
+                    <h2>Legwear</h2>
+                </div>
+
+                <div id="legwear" class="result">---</div>
+
+                <button class="generate-button"
+                        id="legwearButton"
+                        onclick="generateLegwear()">
+                    GENERATE LEGWEAR
+                </button>
+            </div>
+
+
+            <!-- SHOES -->
+            <div class="section">
+                <div class="section-heading">
+                    <span>👟</span>
+                    <h2>Shoes</h2>
+                </div>
+
+                <div id="shoes" class="result">---</div>
+
+                <button class="generate-button"
+                        id="shoesButton"
+                        onclick="generateShoes()">
+                    GENERATE SHOES
+                </button>
+            </div>
+
+
+            <!-- ACCESSORIES -->
+            <div class="section">
+                <div class="section-heading">
+                    <span>💍</span>
+                    <h2>Accessories</h2>
+                </div>
+
+                <div id="accessoryCount" class="result">---</div>
+
+                <button class="generate-button"
+                        id="accessoryButton"
+                        onclick="generateAccessories()">
+                    GENERATE ACCESSORIES
+                </button>
+
+                <div id="accessories" class="sub-results"></div>
+            </div>
+
+        </section>
+
+
+        <button class="reset-button"
+                onclick="resetGenerator()">
+            NEW OUTFIT
+        </button>
+
+
+        <footer>
+            BL3CKPURPLE
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
