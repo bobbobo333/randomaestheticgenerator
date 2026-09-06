@@ -551,17 +551,37 @@ const accessories = {
 
 
 // ==========================================
-// RANDOM FUNCTIONS
+// RANDOM GENERATOR
 // ==========================================
 
-function randomAesthetic(category) {
-    const aesthetics = Object.keys(category);
-    return aesthetics[Math.floor(Math.random() * aesthetics.length)];
-}
+const databases = {
+    hat: hats,
+    top: tops,
+    bottom: bottoms,
+    shoes: shoes,
+    accessories: accessories
+};
 
-function randomItem(category, aesthetic) {
-    const items = category[aesthetic];
-    return items[Math.floor(Math.random() * items.length)];
+
+function generateCategory(categoryName) {
+
+    const database = databases[categoryName];
+
+    const aesthetics = Object.keys(database);
+
+    const randomAesthetic =
+        aesthetics[Math.floor(Math.random() * aesthetics.length)];
+
+    const items = database[randomAesthetic];
+
+    const randomItem =
+        items[Math.floor(Math.random() * items.length)];
+
+    const result =
+        document.getElementById(categoryName);
+
+    result.textContent =
+        randomAesthetic + " → " + randomItem;
 }
 
 
