@@ -1,4 +1,5 @@
-JavaScript
+
+
 // ==========================================
 // BL3CKPURPLE RANDOM AESTHETIC GENERATOR
 // ONE-BY-ONE GENERATOR
