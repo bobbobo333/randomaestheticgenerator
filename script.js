@@ -1689,33 +1689,9 @@ const accessories = {
 function randomAesthetic(database) {
     const names = Object.keys(database);
 
-    const lessFrequent = new Set([
-        "Gothic",
-        "Goth Lolita",
-        "Emo",
-        "Scene",
-        "Visual Kei",
-        "Dark Academia",
-        "Punk",
-        "Grunge",
-        "Cyberpunk",
-        "Balletcore",
-        "Coquette",
-        "Fairycore"
-    ]);
-
-    const broadStylePool = names.filter(function (name) {
-        return !lessFrequent.has(name);
-    });
-
-    // About 70% of rolls favor the broader style pool.
-    // All aesthetics remain possible.
-    const pool =
-        broadStylePool.length > 0 && Math.random() < 0.70
-            ? broadStylePool
-            : names;
-
-    return pool[Math.floor(Math.random() * pool.length)];
+    return names[
+        Math.floor(Math.random() * names.length)
+    ];
 }
 
 
@@ -1805,18 +1781,35 @@ function generateHat() {
 ========================= */
 
 function generateLayers() {
-    const button = document.getElementById("layerButton");
+    const button =
+        document.getElementById("layerButton");
+
     button.disabled = true;
 
-    const countResult = document.getElementById("layerCount");
-    const roll = Math.random();
+    const countResult =
+        document.getElementById("layerCount");
+
+    const roll =
+        Math.random();
 
     let layerCount;
 
-    // Every outfit gets at least one upper-body garment.
-    if (roll < 0.50) {
+    if (roll < 0.15) {
+        rollResult(
+            countResult,
+            "NO LAYERS",
+            function () {
+                button.textContent =
+                    "LAYERS LOCKED";
+            }
+        );
+
+        return;
+    }
+
+    if (roll < 0.60) {
         layerCount = 1;
-    } else if (roll < 0.85) {
+    } else if (roll < 0.90) {
         layerCount = 2;
     } else {
         layerCount = 3;
@@ -1824,12 +1817,17 @@ function generateLayers() {
 
     rollResult(
         countResult,
-        layerCount + " LAYER" + (layerCount > 1 ? "S" : ""),
+        layerCount +
+        " LAYER" +
+        (layerCount > 1 ? "S" : ""),
         function () {
-            generateUpperLayerResults(layerCount);
+            generateUpperLayerResults(
+                layerCount
+            );
         }
     );
 }
+
 
 function generateUpperLayerResults(layerCount) {
     const container =
@@ -1897,13 +1895,29 @@ function generateUpperLayerResults(layerCount) {
                 Math.random() < 0.25
             ) {
                 finalResult =
-                    const aesthetic = randomAesthetic(database);
+                    "NO OUTER LAYER";
 
-const item = randomItem(database, aesthetic);
+            } else {
 
-const finalResult = aesthetic + " → " + item;
+                const aesthetic =
+                    randomAesthetic(database);
 
-rollResult(box, finalResult);
+                const item =
+                    randomItem(
+                        database,
+                        aesthetic
+                    );
+
+                finalResult =
+                    aesthetic +
+                    " → " +
+                    item;
+            }
+
+            rollResult(
+                box,
+                finalResult
+            );
 
         }, index * 300);
     });
