@@ -1686,12 +1686,64 @@ const accessories = {
    RANDOM HELPERS
 ========================= */
 
+// Each clothing section gets its own shuffled bag of aesthetics.
+const aestheticBags = new WeakMap();
+const lastAesthetic = new WeakMap();
+
 function randomAesthetic(database) {
     const names = Object.keys(database);
 
-    return names[
-        Math.floor(Math.random() * names.length)
-    ];
+    if (names.length === 0) {
+        return "";
+    }
+
+    let bag = aestheticBags.get(database);
+
+    // When all aesthetics have been used, shuffle a fresh bag.
+    if (!bag || bag.length === 0) {
+        bag = names.slice();
+
+        // Fisher-Yates shuffle.
+        for (let i = bag.length - 1; i > 0; i--) {
+            const j = Math.floor(
+                Math.random() * (i + 1)
+            );
+
+            [bag[i], bag[j]] = [
+                bag[j],
+                bag[i]
+            ];
+        }
+
+        // Avoid repeating the previous aesthetic
+        // immediately when a new bag begins.
+        const previous = lastAesthetic.get(database);
+
+        if (
+            bag.length > 1 &&
+            bag[bag.length - 1] === previous
+        ) {
+            const swapIndex = Math.floor(
+                Math.random() * (bag.length - 1)
+            );
+
+            [
+                bag[bag.length - 1],
+                bag[swapIndex]
+            ] = [
+                bag[swapIndex],
+                bag[bag.length - 1]
+            ];
+        }
+
+        aestheticBags.set(database, bag);
+    }
+
+    const chosen = bag.pop();
+
+    lastAesthetic.set(database, chosen);
+
+    return chosen;
 }
 
 
