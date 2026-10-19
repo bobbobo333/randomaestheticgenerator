@@ -1789,24 +1789,10 @@ function generateLayers() {
     const countResult =
         document.getElementById("layerCount");
 
-    const roll =
-        Math.random();
-
+    const roll = Math.random();
     let layerCount;
 
-    if (roll < 0.15) {
-        rollResult(
-            countResult,
-            "NO LAYERS",
-            function () {
-                button.textContent =
-                    "LAYERS LOCKED";
-            }
-        );
-
-        return;
-    }
-
+    // Every upper-body roll gets at least one real clothing layer.
     if (roll < 0.60) {
         layerCount = 1;
     } else if (roll < 0.90) {
@@ -1821,9 +1807,7 @@ function generateLayers() {
         " LAYER" +
         (layerCount > 1 ? "S" : ""),
         function () {
-            generateUpperLayerResults(
-                layerCount
-            );
+            generateUpperLayerResults(layerCount);
         }
     );
 }
@@ -1871,61 +1855,33 @@ function generateUpperLayerResults(layerCount) {
         container.appendChild(box);
 
         setTimeout(function () {
-
             let database;
 
-            if (
-                layerName === "Base Layer"
-            ) {
+            if (layerName === "Base Layer") {
                 database = upperBase;
-
-            } else if (
-                layerName === "Middle Layer"
-            ) {
+            } else if (layerName === "Middle Layer") {
                 database = upperMiddle;
-
             } else {
                 database = upperOuter;
             }
 
-            let finalResult;
+            // Always select an actual clothing item.
+            const aesthetic =
+                randomAesthetic(database);
 
-            if (
-                layerName === "Outer Layer" &&
-                Math.random() < 0.25
-            ) {
-                finalResult =
-                    "NO OUTER LAYER";
+            const item =
+                randomItem(database, aesthetic);
 
-            } else {
+            const finalResult =
+                aesthetic + " → " + item;
 
-                const aesthetic =
-                    randomAesthetic(database);
-
-                const item =
-                    randomItem(
-                        database,
-                        aesthetic
-                    );
-
-                finalResult =
-                    aesthetic +
-                    " → " +
-                    item;
-            }
-
-            rollResult(
-                box,
-                finalResult
-            );
-
+            rollResult(box, finalResult);
         }, index * 300);
     });
 
     document.getElementById(
         "layerButton"
-    ).textContent =
-        "LAYERS LOCKED";
+    ).textContent = "LAYERS LOCKED";
 }
 
 
