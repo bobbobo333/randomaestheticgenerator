@@ -1701,7 +1701,21 @@ function randomAesthetic(database) {
 
     // When all aesthetics have been used, shuffle a fresh bag.
     if (!bag || bag.length === 0) {
-        bag = names.slice();
+        // Normal aesthetics get 2 entries.
+// Dark/emo-related aesthetics get 1.
+bag = [];
+
+const darkStylePattern =
+    /\b(emo|goth|gothic|dark academia|grunge|punk|cyberpunk|visual kei|scene)\b/i;
+
+names.forEach(function (name) {
+    const copies =
+        darkStylePattern.test(name) ? 1 : 2;
+
+    for (let i = 0; i < copies; i++) {
+        bag.push(name);
+    }
+});
 
         // Fisher-Yates shuffle.
         for (let i = bag.length - 1; i > 0; i--) {
